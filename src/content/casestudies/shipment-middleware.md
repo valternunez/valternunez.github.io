@@ -2,7 +2,7 @@
 title: Shipment middleware — one interface, every carrier
 org: ZeBrands
 role: Design & development
-period: "2022 – 2024"
+period: "2024"
 blurb: >
   A service that puts every shipping carrier behind one interface and routes each shipment to
   the cheapest viable option, automatically.

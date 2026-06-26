@@ -2,7 +2,7 @@
 title: OZ — selling while the ERP is down
 org: ZeBrands
 role: Architecture & implementation
-period: "2023 – 2026"
+period: "2025 – 2026"
 blurb: >
   An event-driven resilience layer that keeps online and retail sales running during ERP
   outages. A single point of failure, turned into a fallback you can watch.

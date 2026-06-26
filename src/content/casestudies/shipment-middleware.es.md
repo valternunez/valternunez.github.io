@@ -3,7 +3,7 @@ lang: "es"
 title: Middleware de envíos — una sola interfaz, todas las paqueterías
 org: ZeBrands
 role: Diseño y desarrollo
-period: "2022 – 2024"
+period: "2024"
 blurb: >
   Un servicio que pone a cada paquetería detrás de una sola interfaz y enruta cada envío a
   la opción viable más económica, de forma automática.

@@ -50,7 +50,7 @@ across isolated git worktrees and handing work off via API contracts and diffs. 
 human-in-the-loop architect; the agents are the leverage. Same instinct as the rest of my work:
 design the system, instrument it, and let the tooling handle the repetitive part.
 
-### The point
+### What it shows
 
-What I build when nobody's handing out tickets: a hard, real domain, end to end (architecture, data
-model, payments, observability, and the docs), to a standard I'd defend in review.
+End-to-end ownership of a hard domain, solo: system design, a payments stack that moves real money
+(double-entry ledgers, Stripe Connect), multi-tenant security, and the tests and docs to back it.
