@@ -1,0 +1,94 @@
+---
+// Shared <head>, fonts, and meta. Locale-aware (en at /, es at /es).
+import '../styles/fonts.css';
+import '../styles/tokens.css';
+import { getProfile, type Locale } from '../data/profile';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  locale?: Locale;
+  title?: string;
+  description?: string;
+}
+
+const { locale = 'en' } = Astro.props;
+const profile = getProfile(locale);
+const t = useTranslations(locale);
+
+const { title = profile.seoTitle, description = profile.seoDescription } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL(locale === 'es' ? '/og/og-es.png' : '/og/og-default.png', Astro.site).href;
+
+// Reciprocal hreflang alternates (single-page site → root of each locale).
+const altEn = new URL('/', Astro.site).href;
+const altEs = new URL('/es', Astro.site).href;
+---
+
+<!doctype html>
+<html lang={locale} data-mode="light">
+  <head>
+    <!-- Theme initializer — runs before paint to avoid a flash of the wrong theme.
+         Restores the saved light/dark choice; falls back to the OS colour scheme. -->
+    <script is:inline>
+      (function () {
+        try {
+          var el = document.documentElement;
+          var m = localStorage.getItem('cv-mode');
+          if (!m) m = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          el.setAttribute('data-mode', m);
+        } catch (e) {}
+      })();
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={altEn} />
+    <link rel="alternate" hreflang="es" href={altEs} />
+    <link rel="alternate" hreflang="x-default" href={altEn} />
+
+    <!-- Preload the above-the-fold Latin subsets to avoid hero FOUT/CLS. -->
+    <link rel="preload" href="/fonts/newsreader-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={profile.name} />
+
+    <!-- Open Graph. PNG, not SVG — social platforms don't rasterize SVG OG cards. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale === 'es' ? 'es_MX' : 'en_GB'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${profile.name} — ${profile.role}`} />
+    <meta property="og:site_name" content={profile.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured data: helps recruiters' tooling and search understand the page. -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: profile.name,
+        jobTitle: profile.role,
+        email: `mailto:${profile.links.email}`,
+        url: profile.links.github,
+        sameAs: [profile.links.github, profile.links.linkedin],
+        alumniOf: 'Tecnológico de Monterrey (ITESM)',
+        knowsLanguage: profile.languages.map((l) => l.name),
+      })}
+    />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">{t.skipLink}</a>
+    <slot />
+  </body>
+</html>

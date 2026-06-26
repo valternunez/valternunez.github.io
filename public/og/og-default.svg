@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#f7f4ee"/>
+  <line x1="80" y1="110" x2="1120" y2="110" stroke="#ddd6ca" stroke-width="2"/>
+  <line x1="80" y1="520" x2="1120" y2="520" stroke="#ddd6ca" stroke-width="2"/>
+  <text x="80" y="92" font-family="Georgia, serif" font-size="26" letter-spacing="6" fill="#8c857c">PORTFOLIO · CV</text>
+  <text x="80" y="270" font-family="Georgia, serif" font-size="92" font-weight="700" fill="#1a1714">Valter Nunez</text>
+  <text x="80" y="350" font-family="Georgia, serif" font-size="44" fill="#57514a">Backend &amp; distributed-systems engineer</text>
+  <g font-family="ui-monospace, monospace" font-size="40" font-weight="700">
+    <text x="80" y="470" fill="#c2410c">−83%</text>
+    <text x="340" y="470" fill="#c2410c">−78%</text>
+    <text x="600" y="470" fill="#c2410c">−91%</text>
+  </g>
+  <g font-family="ui-monospace, monospace" font-size="18" fill="#6f6860">
+    <text x="80" y="500">ERP DEPENDENCY</text>
+    <text x="340" y="500">SHIPPING SPEND</text>
+    <text x="600" y="500">DOWNTIME (PROJ.)</text>
+  </g>
+  <text x="80" y="585" font-family="ui-monospace, monospace" font-size="22" fill="#57514a">valternunez.github.io · MSc Data Science, LSE · London</text>
+</svg>

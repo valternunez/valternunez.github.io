@@ -1,0 +1,38 @@
+# build output
+dist/
+.output/
+
+# astro
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# environment variables
+.env
+.env.production
+
+# macOS / editors
+.DS_Store
+*.swp
+
+# original source CVs (kept locally, not published)
+/CV-3.pdf
+/CV-masters.pdf
+
+# internal working notes — kept local, never published
+audit/
+
+# LaTeX build artifacts (CV source)
+cv-src/*.aux
+cv-src/*.log
+cv-src/*.out
+cv-src/*.fls
+cv-src/*.fdb_latexmk
+cv-src/*.synctex.gz

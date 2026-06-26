@@ -1,0 +1,68 @@
+---
+// EN/ES language toggle. Links the English (/) and Spanish (/es) homepages.
+import type { Locale } from '../data/profile';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  current: Locale;
+}
+const { current } = Astro.props;
+const t = useTranslations(current);
+---
+
+<nav class="switch" aria-label={t.langLabel}>
+  <div class="switch__track">
+    <a
+      href="/"
+      hreflang="en"
+      class={`switch__opt ${current === 'en' ? 'is-active' : ''}`}
+      aria-current={current === 'en' ? 'true' : undefined}
+    >
+      EN
+    </a>
+    <a
+      href="/es"
+      hreflang="es"
+      class={`switch__opt ${current === 'es' ? 'is-active' : ''}`}
+      aria-current={current === 'es' ? 'true' : undefined}
+    >
+      ES
+    </a>
+  </div>
+</nav>
+
+<style>
+  .switch {
+    display: inline-flex;
+    align-items: center;
+  }
+  .switch__track {
+    display: inline-flex;
+    border: var(--border-thin) solid var(--rule);
+    border-radius: 999px;
+    padding: 2px;
+    background: var(--bg-raised);
+  }
+  .switch__opt {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.32rem 0.6rem;
+    border-radius: 999px;
+    color: var(--ink-soft);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .switch__opt.is-active {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+  .switch__opt:not(.is-active):hover {
+    color: var(--ink);
+  }
+</style>

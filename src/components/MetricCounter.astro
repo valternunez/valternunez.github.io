@@ -1,0 +1,120 @@
+---
+import type { Metric } from '../data/profile';
+
+interface Props {
+  metric: Metric;
+  /** Visual emphasis style differs slightly per version. */
+  size?: 'lg' | 'md';
+}
+const { metric, size = 'lg' } = Astro.props;
+
+// Pre-format the final string so it's correct even with JS disabled / reduced motion.
+function format(m: Metric): string {
+  if (m.format === 'signed-percent') {
+    const sign = m.value < 0 ? '−' : '+';
+    return `${sign}${Math.abs(m.value)}%`;
+  }
+  if (m.format === 'usd-k') {
+    const sign = m.value < 0 ? '−' : '+';
+    return `${sign}$${Math.abs(m.value)}K`;
+  }
+  return `${m.value}${m.unit}`;
+}
+
+const display = format(metric);
+const sign = metric.value < 0 ? '−' : '+';
+const prefix = metric.format === 'usd-k' ? `${sign}$` : sign;
+const suffix = metric.format === 'usd-k' ? 'K' : '%';
+const target = Math.abs(metric.value);
+---
+
+<div class={`metric metric--${size}`}>
+  <div class="metric__value mono" aria-label={display}>
+    <span
+      class="metric__num"
+      data-counter
+      data-target={target}
+      data-prefix={prefix}
+      data-suffix={suffix}
+      aria-hidden="true">{display}</span>
+  </div>
+  <div class="metric__label">{metric.label}</div>
+  {metric.detail && <p class="metric__detail">{metric.detail}</p>}
+</div>
+
+<style>
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+  .metric__value {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .metric--lg .metric__value {
+    font-size: var(--step-5);
+  }
+  .metric--md .metric__value {
+    font-size: var(--step-3);
+  }
+  .metric__label {
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .metric__detail {
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    max-width: 24ch;
+    margin-top: var(--sp-1);
+  }
+</style>
+
+<script>
+  // Count up when scrolled into view. No-ops under reduced motion (value already correct).
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function render(el: HTMLElement, n: number) {
+    const prefix = el.dataset.prefix ?? '';
+    const suffix = el.dataset.suffix ?? '';
+    el.textContent = `${prefix}${n}${suffix}`;
+  }
+
+  function animate(el: HTMLElement) {
+    const target = Number(el.dataset.target ?? '0');
+    const duration = 1100;
+    const start = performance.now();
+    function tick(now: number) {
+      const t = Math.min(1, (now - start) / duration);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - t, 3);
+      render(el, Math.round(eased * target));
+      if (t < 1) requestAnimationFrame(tick);
+      else render(el, target);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counters = document.querySelectorAll<HTMLElement>('[data-counter]');
+  if (!reduce && 'IntersectionObserver' in window) {
+    counters.forEach((el) => render(el, 0));
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            animate(e.target as HTMLElement);
+            obs.unobserve(e.target);
+          }
+        }
+      },
+      { threshold: 0.5 }
+    );
+    counters.forEach((el) => io.observe(el));
+  }
+</script>

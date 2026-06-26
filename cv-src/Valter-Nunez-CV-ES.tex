@@ -1,0 +1,105 @@
+%==============================================================================
+%  Valter Nunez — CV en español (México)  ·  1 página, compatible con ATS
+%  Compilar en Overleaf (XeLaTeX) o localmente: `tectonic Valter-Nunez-CV-ES.tex`
+%==============================================================================
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{lato}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[margin=1.05cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{ink}{HTML}{0A0A0A}
+\definecolor{accent}{HTML}{2563EB}
+\definecolor{soft}{HTML}{45474B}
+\color{ink}
+\hypersetup{colorlinks=true, urlcolor=accent}
+
+\setlength{\parindent}{0pt}
+\linespread{1.04}
+\pagestyle{empty}
+
+\titleformat{\section}
+  {\large\bfseries\color{ink}}{}{0em}{}
+  [\vspace{-0.55em}\color{accent}\rule{\linewidth}{1.1pt}]
+\titlespacing*{\section}{0pt}{0.5em}{0.4em}
+
+\newcommand{\rol}[4]{%
+  \textbf{#1} \hfill \textbf{#3}\\[1pt]
+  {\color{soft}\textit{#2} \hfill \textit{#4}}\par\vspace{2pt}}
+\newcommand{\proyecto}[2]{\textbf{#1} \,---\, #2\par\vspace{1pt}}
+\newcommand{\hab}[2]{\textbf{\color{soft}#1:}\ #2\par\vspace{1.5pt}}
+
+\newlist{tight}{itemize}{1}
+\setlist[tight]{leftmargin=1.1em, itemsep=1.6pt, topsep=2pt, parsep=0pt,
+  label=\textcolor{accent}{\small$\bullet$}}
+
+\begin{document}
+
+%--- ENCABEZADO ---------------------------------------------------------------
+{\Huge\bfseries Valter Nunez}\\[3pt]
+{\color{soft}\large Ingeniero Backend y de Sistemas Distribuidos}\\[5pt]
+{\small
+\href{mailto:valter.nunez@outlook.com}{valter.nunez@outlook.com} \quad\textcolor{soft}{|}\quad
+\href{https://www.linkedin.com/in/valternunez}{linkedin.com/in/valternunez} \quad\textcolor{soft}{|}\quad
+\href{https://valternunez.github.io}{valternunez.github.io}
+}
+
+%--- RESUMEN ------------------------------------------------------------------
+\section*{Resumen}
+Ingeniero backend con cinco años en e-commerce de alto tráfico: sistemas orientados a
+eventos y tolerantes a fallos. Desacoplé el \textit{83\%} de los flujos de venta críticos del ERP y
+reduje el gasto total de envíos un \textit{\textasciitilde78\%} con enrutamiento automático al menor
+costo. Actualmente curso la \textbf{Maestría en Ciencia de Datos en LSE}, en Londres. Elegible para
+la Graduate visa del Reino Unido (18 meses, sin necesidad de patrocinio).
+
+%--- EXPERIENCIA --------------------------------------------------------------
+\section*{Experiencia}
+
+\rol{Ingeniero Backend}{ZeBrands — e-commerce de alto tráfico}{Sep 2021 -- Mar 2026}{Remoto, México}
+\begin{tight}
+  \item Diseñé y construí \textbf{OZ}, una plataforma orientada a eventos que sostiene las ventas durante caídas del ERP, desacoplando el \textit{83\%} de los flujos de venta críticos de llamadas síncronas al ERP; el análisis de modos de falla proyectó una reducción del \textit{91\%} en el tiempo de caída que bloquea ventas (FastAPI, PostgreSQL, RabbitMQ, Redis); hoy en producción en \textit{\textasciitilde195 tiendas} (México, en expansión a Brasil), sosteniendo \textit{\textasciitilde MX\$102M} en ventas durante el pico de nueve días del Hot Sale.
+  \item Construí un middleware de envíos que unifica las APIs de varias paqueterías (FedEx, DHL) con enrutamiento automático al menor costo, reduciendo el gasto total de envíos un \textit{\textasciitilde78\%} ($\approx$ \$500K USD/año).
+  \item Migré la analítica de reseñas a un microservicio dedicado, mejorando la disponibilidad de datos y el desempeño de las consultas.
+  \item Mantuve módulos del ERP y APIs GraphQL (Frappe, TypeScript) y monté logging/observabilidad en Grafana que redujo los tiempos de detección y respuesta.
+  \item Mentoré a un desarrollador backend junior; contribuí a las revisiones de arquitectura y a los estándares de código backend de los equipos de cliente y promociones.
+\end{tight}
+\vspace{2pt}
+
+\rol{Cofundador y Desarrollador}{Laiter — estudio de software}{2017 -- 2019}{México}
+\begin{tight}
+  \item Entregué aplicaciones web para clientes de principio a fin (Django, JavaScript) y construí los primeros tableros de analítica de uso con los que los clientes tomaban decisiones; me hice cargo de los despliegues y del soporte en producción.
+\end{tight}
+
+%--- PROYECTOS ----------------------------------------------------------------
+\section*{Proyectos seleccionados}
+\begin{tight}
+  \item \proyecto{Nexus}{arquitecto único de un SaaS multiinquilino para administración de inmuebles: motor financiero de partida doble, Stripe Connect (cargos, SPEI, pagos, disputas), RBAC por inquilino y un asistente con LLM (Gemini) con medición de uso, límites de tasa y salida estructurada. Construido en solitario mediante un flujo de desarrollo multiagente orquestado (Claude Code, git worktrees). En desarrollo activo (FastAPI, async SQLAlchemy, Next.js).}
+  \item \proyecto{Estudio de atención del Balón de Oro}{descomposición bayesiana (PyMC, \textasciitilde210 temporadas-jugador) que aísla un residual inexplicado de atención mediática tras controlar por mérito y éxito del equipo; sitio de scrollytelling en D3 + reporte en Quarto.}
+  \item \proyecto{Momentum del Mundial 2026}{pipeline de datos de experimento natural (scraping local $\rightarrow$ GitHub Actions $\rightarrow$ Pages) que se regenera a diario.}
+\end{tight}
+
+%--- EDUCACIÓN ----------------------------------------------------------------
+\section*{Educación}
+\rol{Maestría en Ciencia de Datos}{London School of Economics (LSE)}{2026 -- 2027}{En curso, Londres}
+\vspace{2pt}
+\rol{Ing. en Ciencias y Tecnologías Computacionales}{Tecnológico de Monterrey (ITESM)}{2016 -- 2021}{Prom. 90/100}
+\vspace{1pt}
+{\color{soft}\small Semestre de intercambio en RMIT University, Melbourne (Prom. 94/100). Certificado Profesional en Ciencia de Datos de IBM (en curso).}
+
+%--- HABILIDADES --------------------------------------------------------------
+\section*{Habilidades técnicas}
+\hab{Lenguajes}{Python, TypeScript, JavaScript, SQL \;(familiar: Go)}
+\hab{Backend}{FastAPI, Django, GraphQL, Celery, Frappe/ERPNext}
+\hab{Datos e infraestructura}{PostgreSQL, Redis, RabbitMQ, MongoDB, Docker, Grafana, GitHub Actions}
+\hab{Ciencia de datos}{pandas, NumPy, scikit-learn, PyMC, inferencia bayesiana, Quarto}
+\hab{IA / LLM}{Integración de LLM (Gemini), medición de uso y límites de tasa, salida estructurada, desarrollo orquestado con agentes}
+\hab{Prácticas}{Diseño orientado a eventos y de microservicios, pruebas, observabilidad, revisión de código}
+\hab{Idiomas}{Español (nativo), Inglés (C2), Alemán (A2), Italiano (A1)}
+
+\end{document}
