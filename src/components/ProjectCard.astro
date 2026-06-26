@@ -1,0 +1,137 @@
+---
+import type { Locale } from '../data/profile';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  blurb: string;
+  body?: string;
+  year?: string;
+  kind: string;
+  stack: string[];
+  repo?: string;
+  live?: string;
+  isPrivate?: boolean;
+  featured?: boolean;
+  locale?: Locale;
+}
+const { title, blurb, year, kind, stack, repo, live, isPrivate, featured, locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<article class={`card ${featured ? 'card--featured' : ''}`}>
+  <header class="card__head">
+    <span class="eyebrow">{t.card.kinds[kind] ?? kind}</span>
+    {year && <span class="card__year mono">{year}</span>}
+  </header>
+
+  <h3 class="card__title">{title}</h3>
+  <p class="card__blurb">{blurb}</p>
+
+  {
+    stack.length > 0 && (
+      <ul class="card__stack" aria-label={t.card.stackLabel}>
+        {stack.map((s) => (
+          <li class="mono">{s}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  <footer class="card__foot">
+    {
+      live && (
+        <a class="card__link card__link--accent" href={live} target="_blank" rel="noopener">
+          {t.card.live}
+        </a>
+      )
+    }
+    {
+      repo && (
+        <a class="card__link" href={repo} target="_blank" rel="noopener">
+          {t.card.code}
+        </a>
+      )
+    }
+    {isPrivate && <span class="card__private">{t.card.privateRepo}</span>}
+  </footer>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    padding: var(--sp-6);
+    background: var(--bg-raised);
+    border: var(--border-thin) solid var(--rule);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    height: 100%;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .card--featured {
+    border-left: 3px solid var(--accent);
+  }
+  .card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card__year {
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+  }
+  .card__title {
+    font-size: var(--step-1);
+    line-height: 1.15;
+  }
+  .card__blurb {
+    color: var(--ink-soft);
+    font-size: var(--step-0);
+    flex-grow: 1;
+  }
+  .card__stack {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-1) var(--sp-2);
+    margin: 0;
+    padding: 0;
+  }
+  .card__stack li {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    border: var(--border-thin) solid var(--rule);
+    border-radius: 999px;
+    padding: 0.1rem 0.55rem;
+  }
+  .card__foot {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+    margin-top: var(--sp-1);
+  }
+  .card__link {
+    font-size: var(--step--1);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+  }
+  .card__link:hover {
+    border-bottom-color: currentColor;
+  }
+  .card__link--accent {
+    color: var(--accent);
+  }
+  .card__private {
+    font-size: var(--step--1);
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+</style>

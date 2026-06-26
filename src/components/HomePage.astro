@@ -1,0 +1,288 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import MetricCounter from './MetricCounter.astro';
+import ProjectCard from './ProjectCard.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import ThemeControls from './ThemeControls.astro';
+import { getProfile, type Locale } from '../data/profile';
+import { useTranslations } from '../i18n/ui';
+import '../styles/editorial.css';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const profile = getProfile(locale);
+const t = useTranslations(locale);
+
+// ── Load content for this locale ──
+const byLang = (c: { data: { lang: string; order: number } }) => c.data.lang === locale;
+
+const cases = (await getCollection('casestudies', byLang)).sort((a, b) => a.data.order - b.data.order);
+const renderedCases = await Promise.all(
+  cases.map(async (c) => ({ ...c, Content: (await render(c)).Content }))
+);
+
+const experience = (await getCollection('experience', byLang)).sort((a, b) => a.data.order - b.data.order);
+
+const allProjects = (await getCollection('projects', byLang)).sort((a, b) => a.data.order - b.data.order);
+const featured = allProjects.filter((p) => p.data.featured);
+const secondary = allProjects.filter((p) => !p.data.featured);
+---
+
+<Base locale={locale}>
+  <div class="ed">
+    <header class="ed-header">
+      <div class="container ed-header__inner">
+        <a href="#main" class="ed-wordmark">Valter <span>Nunez</span></a>
+        <nav class="ed-nav">
+          <a href="#work">{t.nav.work}</a>
+          <a href="#projects">{t.nav.projects}</a>
+          <a href="#experience">{t.nav.experience}</a>
+          <a href="#about">{t.nav.about}</a>
+          <a href="#contact">{t.nav.contact}</a>
+        </nav>
+        <div class="ed-header__controls">
+          <ThemeControls locale={locale} />
+          <LangSwitcher current={locale} />
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- ── Hero ── -->
+      <section class="ed-hero container">
+        <span class="ed-hero__status">{profile.status.label}</span>
+        <h1 class="ed-hero__title ed-hero__name">{profile.name}</h1>
+        <p class="ed-hero__lede">{profile.tagline}</p>
+        <div class="ed-cta">
+          <a class="btn btn--primary" href={profile.cv} download>{t.hero.ctaCv}</a>
+          <a class="btn btn--ghost" href="#work">{t.hero.ctaWork}</a>
+        </div>
+        <p class="ed-hero__avail">
+          <span class="ed-hero__avail-dot" aria-hidden="true"></span>{profile.availabilityShort}
+        </p>
+
+        <div class="ed-metrics">
+          {profile.metrics.map((m) => <MetricCounter metric={m} size="lg" />)}
+        </div>
+      </section>
+
+      <!-- ── Selected work ── -->
+      <section id="work" class="ed-section">
+        <div class="container">
+          <div class="ed-section__head">
+            <span class="ed-section__num">01 — {t.sections.work.eyebrow}</span>
+            <h2 class="ed-section__title">{t.sections.work.title}</h2>
+          </div>
+
+          <div class="ed-cases">
+            {
+              renderedCases.map((c) => (
+                <article class="ed-case">
+                  <div class="ed-case__meta">
+                    {c.data.flagship && <span class="ed-case__flag">{t.flagship}</span>}
+                    <span class="ed-case__org">{c.data.org}{c.data.period ? ` · ${c.data.period}` : ''}</span>
+                    <h3 class="ed-case__title">{c.data.title}</h3>
+                    {c.data.metrics.length > 0 && (
+                      <div class="ed-case__nums">
+                        {c.data.metrics.map((m) => (
+                          <div class="ed-case__num">
+                            <b class="mono">{m.value}</b>
+                            <span>{m.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {c.data.stack.length > 0 && (
+                      <div class="ed-chips">
+                        {c.data.stack.map((s) => (
+                          <span class="ed-chip">{s}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <div class="ed-prose">
+                    <c.Content />
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Projects ── -->
+      <section id="projects" class="ed-section">
+        <div class="container">
+          <div class="ed-section__head">
+            <span class="ed-section__num">02 — {t.sections.projects.eyebrow}</span>
+            <h2 class="ed-section__title">{t.sections.projects.title}</h2>
+          </div>
+
+          <div class="ed-grid">
+            {
+              featured.map((p) => (
+                <ProjectCard
+                  title={p.data.title}
+                  blurb={p.data.blurb}
+                  year={p.data.year}
+                  kind={p.data.kind}
+                  stack={p.data.stack}
+                  repo={p.data.repo}
+                  live={p.data.live}
+                  isPrivate={p.data.isPrivate}
+                  featured={p.data.featured}
+                  locale={locale}
+                />
+              ))
+            }
+          </div>
+
+          <p class="ed-subhead">{t.alsoWorth}</p>
+          <div class="ed-grid">
+            {
+              secondary.map((p) => (
+                <ProjectCard
+                  title={p.data.title}
+                  blurb={p.data.blurb}
+                  year={p.data.year}
+                  kind={p.data.kind}
+                  stack={p.data.stack}
+                  repo={p.data.repo}
+                  live={p.data.live}
+                  isPrivate={p.data.isPrivate}
+                  locale={locale}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Experience ── -->
+      <section id="experience" class="ed-section">
+        <div class="container">
+          <div class="ed-section__head">
+            <span class="ed-section__num">03 — {t.sections.experience.eyebrow}</span>
+            <h2 class="ed-section__title">{t.sections.experience.title}</h2>
+          </div>
+
+          <div class="ed-timeline">
+            {
+              experience.map((e) => (
+                <article class="ed-exp">
+                  <div class="ed-exp__period">{e.data.start} — {e.data.end}</div>
+                  <div>
+                    <h3 class="ed-exp__role">
+                      {e.data.role} <span class="ed-exp__company">· {e.data.company}</span>
+                    </h3>
+                    <ul class="ed-exp__bullets">
+                      {e.data.highlights.map((h) => (
+                        <li>{h}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <!-- ── About / skills / education ── -->
+      <section id="about" class="ed-section">
+        <div class="container">
+          <div class="ed-section__head">
+            <span class="ed-section__num">04 — {t.sections.about.eyebrow}</span>
+            <h2 class="ed-section__title">{t.sections.about.title}</h2>
+          </div>
+
+          <div class="ed-two">
+            <div>
+              {
+                profile.skills.map((g) => (
+                  <div class="ed-skillgroup">
+                    <h4>{g.group}</h4>
+                    <ul>
+                      {g.items.map((i) => (
+                        <li>{i}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              }
+              <div class="ed-langs">
+                {
+                  profile.languages.map((l) => (
+                    <div class="ed-lang">
+                      <b>{l.name}</b>
+                      <span>{l.level}</span>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+
+            <div class="ed-edu">
+              {
+                profile.education.map((ed) => (
+                  <div class={`ed-edu__item ${ed.highlight ? 'is-hl' : ''}`}>
+                    <div class="ed-edu__school">{ed.school}</div>
+                    <div class="ed-edu__degree">{ed.degree}</div>
+                    <div class="ed-edu__meta">{ed.period}{ed.note ? ` · ${ed.note}` : ''}</div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Contact ── -->
+      <section id="contact" class="ed-section">
+        <div class="container">
+          <span class="ed-section__num">05 — {t.sections.contact.eyebrow}</span>
+          <h2 class="ed-contact__title">{t.sections.contact.title}</h2>
+          <p class="ed-contact__avail">{profile.availability}</p>
+          <div class="ed-contact__links">
+            <a href={`mailto:${profile.links.email}`}>{t.contactLinks.email}</a>
+            <a href={profile.links.linkedin} target="_blank" rel="noopener">{t.contactLinks.linkedin}</a>
+            <a href={profile.links.github} target="_blank" rel="noopener">{t.contactLinks.github}</a>
+            <a href={profile.cv} download>{t.contactLinks.cv}</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="ed-footer container">
+      <span>© 2026 {profile.name}</span>
+      <span class="mono">{t.footer.built}</span>
+    </footer>
+  </div>
+</Base>
+
+<script>
+  // Reveal the header wordmark once the hero name scrolls under the sticky header,
+  // so the name appears to rise from the title into the navbar. Hide it again on the way up.
+  const heroName = document.querySelector<HTMLElement>('.ed-hero__name');
+  const wordmark = document.querySelector<HTMLElement>('.ed-wordmark');
+  if (heroName && wordmark) {
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            // not intersecting = hero name is above the header → show the wordmark
+            wordmark.classList.toggle('is-visible', !e.isIntersecting);
+          }
+        },
+        { rootMargin: '-72px 0px 0px 0px', threshold: 0 }
+      );
+      io.observe(heroName);
+    } else {
+      // No IntersectionObserver → just show it so the name is never missing.
+      wordmark.classList.add('is-visible');
+    }
+  }
+</script>

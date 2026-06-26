@@ -1,0 +1,99 @@
+%==============================================================================
+%  Valter Nunez — CV  ·  AI / LLM ENGINEER variant (1 page, ATS-friendly)
+%  Leads with in-product LLM integration + agent-orchestrated development.
+%  Honest scope: integrates Gemini (live); orchestrates Claude Code's native
+%  agents (not a custom framework; human-in-the-loop). Compile: XeLaTeX / tectonic.
+%==============================================================================
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{lato}
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[margin=1.15cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{ink}{HTML}{0A0A0A}
+\definecolor{accent}{HTML}{2563EB}
+\definecolor{soft}{HTML}{45474B}
+\color{ink}
+\hypersetup{colorlinks=true, urlcolor=accent}
+
+\setlength{\parindent}{0pt}
+\linespread{1.04}
+\pagestyle{empty}
+
+\titleformat{\section}
+  {\large\bfseries\color{ink}}{}{0em}{}
+  [\vspace{-0.55em}\color{accent}\rule{\linewidth}{1.1pt}]
+\titlespacing*{\section}{0pt}{0.65em}{0.45em}
+
+\newcommand{\role}[4]{%
+  \textbf{#1} \hfill \textbf{#3}\\[1pt]
+  {\color{soft}\textit{#2} \hfill \textit{#4}}\par\vspace{2pt}}
+\newcommand{\project}[2]{\textbf{#1} \,---\, #2\par\vspace{1pt}}
+\newcommand{\skill}[2]{\textbf{\color{soft}#1:}\ #2\par\vspace{1.5pt}}
+
+\newlist{tight}{itemize}{1}
+\setlist[tight]{leftmargin=1.1em, itemsep=1.6pt, topsep=2pt, parsep=0pt,
+  label=\textcolor{accent}{\small$\bullet$}}
+
+\begin{document}
+
+{\Huge\bfseries Valter Nunez}\\[3pt]
+{\color{soft}\large Software Engineer \textemdash{} AI / LLM Systems \;\textbar\; MSc Data Science, LSE (London)}\\[5pt]
+{\small
+\href{mailto:valter.nunez@outlook.com}{valter.nunez@outlook.com} \quad\textcolor{soft}{|}\quad
+\href{https://www.linkedin.com/in/valternunez}{linkedin.com/in/valternunez} \quad\textcolor{soft}{|}\quad
+\href{https://valternunez.github.io}{valternunez.github.io}
+}
+
+\section*{Summary}
+Backend engineer who builds \textbf{LLM-integrated products}, with an
+\textbf{agent-orchestrated development} workflow that lets one person ship at small-team scope. Five
+years of distributed-systems work (event-driven, fault-tolerant), plus a quantitative foundation and
+self-driven Bayesian-inference projects. Now studying \textbf{MSc Data Science at LSE} in London (UK
+Graduate visa, 18 months, no sponsorship required).
+
+\section*{AI / LLM Engineering}
+\begin{tight}
+  \item Integrated an LLM (\textbf{Google Gemini}) into a production SaaS, an "Improve with AI" assist with the controls a real feature needs: \textbf{usage metering}, daily request/token \textbf{limits}, alert thresholds, a \textbf{fallback model}, graceful degradation, and \textbf{schema-enforced structured output} (Nexus).
+  \item Designed an \textbf{orchestrated multi-agent development workflow} to build Nexus solo: a squad of specialist Claude Code agents (implement, review, and nine read-only auditors for security, data integrity, performance, and more) running in parallel across isolated \textbf{git worktrees}, handing off via API contracts and diffs; human-in-the-loop, \textasciitilde1{,}200 lines of authored command definitions.
+\end{tight}
+
+\section*{Data Science Projects}
+\begin{tight}
+  \item \project{Ballon d'Or attention study}{Bayesian two-stage decomposition (PyMC, \textasciitilde210 player-seasons) isolating an unexplained media-attention residual; shipped as a D3 scrollytelling site + Quarto report.}
+  \item \project{World Cup 2026 momentum}{natural-experiment data pipeline (local scrape $\rightarrow$ GitHub Actions $\rightarrow$ Pages) that regenerates daily.}
+\end{tight}
+
+\section*{Experience}
+\role{Backend Engineer}{ZeBrands — high-traffic e-commerce}{Sep 2021 -- Mar 2026}{Remote, Mexico}
+\begin{tight}
+  \item Designed and built \textbf{OZ}, an event-driven platform that sustains sales through ERP outages, decoupling 83\% of revenue-critical sales flows from synchronous ERP calls (FastAPI, PostgreSQL, RabbitMQ, Redis); designed the schemas and telemetry behind its reliability analytics; now live across \textit{\textasciitilde195 stores} (Mexico, expanding to Brazil), sustaining \textit{\textasciitilde MX\$102M} over the nine-day Hot Sale peak.
+  \item Built multi-carrier shipping middleware with automated least-cost routing (\textasciitilde78\% lower shipping spend); stood up Grafana observability and maintained GraphQL data APIs.
+\end{tight}
+\vspace{3pt}
+\role{Co-Founder \& Developer}{Laiter — software studio}{2017 -- 2019}{Mexico}
+\begin{tight}
+  \item Built Django web apps and the early usage-analytics dashboards clients ran decisions on.
+\end{tight}
+
+\section*{Education}
+\role{MSc Data Science}{London School of Economics (LSE)}{2026 -- 2027}{In progress, London}
+\vspace{2pt}
+\role{B.S. Computer Science \& Technology}{Tecnológico de Monterrey (ITESM)}{2016 -- 2021}{Avg 90/100}
+\vspace{1pt}
+{\color{soft}\small Semester abroad at RMIT Melbourne (Avg 94/100). IBM Data Science Professional Certificate (in progress).}
+
+\section*{Technical Skills}
+\skill{AI / LLM}{LLM integration (Gemini), usage metering \& rate-limiting, structured output, agent-orchestrated development (Claude Code, git worktrees)}
+\skill{Data Science}{Python, pandas, NumPy, scikit-learn, PyMC, Bayesian inference, statistics}
+\skill{Backend}{FastAPI, Django, GraphQL, Celery, PostgreSQL, Redis, RabbitMQ}
+\skill{Infra}{Docker, GitHub Actions, Grafana; event-driven \& microservice design}
+\skill{Languages spoken}{Spanish (Native), English (C2), German (A2), Italian (A1)}
+
+\end{document}

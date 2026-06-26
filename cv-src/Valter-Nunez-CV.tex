@@ -1,0 +1,121 @@
+%==============================================================================
+%  Valter Nunez — Software Engineer CV (1 page, ATS-friendly)  ·  MASTER / backend
+%  Single-column, no graphics, selectable text, standard section names.
+%  Compile in Overleaf (XeLaTeX) or locally: `tectonic Valter-Nunez-CV.tex`
+%==============================================================================
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[default]{lato}        % clean, modern, ATS-safe sans
+\renewcommand*\familydefault{\sfdefault}
+\usepackage[margin=1.15cm]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+%--- Colors -------------------------------------------------------------------
+\definecolor{ink}{HTML}{0A0A0A}
+\definecolor{accent}{HTML}{2563EB}
+\definecolor{soft}{HTML}{45474B}
+\color{ink}
+\hypersetup{colorlinks=true, urlcolor=accent}
+
+%--- Spacing ------------------------------------------------------------------
+\setlength{\parindent}{0pt}
+\linespread{1.04}
+\pagestyle{empty}
+
+%--- Section headings ---------------------------------------------------------
+\titleformat{\section}
+  {\large\bfseries\color{ink}}{}{0em}{}
+  [\vspace{-0.55em}\color{accent}\rule{\linewidth}{1.1pt}]
+\titlespacing*{\section}{0pt}{0.65em}{0.45em}
+
+%--- Helpers ------------------------------------------------------------------
+\newcommand{\role}[4]{%
+  \textbf{#1} \hfill \textbf{#3}\\[1pt]
+  {\color{soft}\textit{#2} \hfill \textit{#4}}\par\vspace{2pt}}
+\newcommand{\project}[2]{\textbf{#1} \,---\, #2\par\vspace{1pt}}
+\newcommand{\skill}[2]{\textbf{\color{soft}#1:}\ #2\par\vspace{1.5pt}}
+
+\newlist{tight}{itemize}{1}
+\setlist[tight]{leftmargin=1.1em, itemsep=1.6pt, topsep=2pt, parsep=0pt,
+  label=\textcolor{accent}{\small$\bullet$}}
+
+\begin{document}
+
+%==============================================================================
+%  HEADER
+%==============================================================================
+{\Huge\bfseries Valter Nunez}\\[3pt]
+{\color{soft}\large Backend \& Distributed Systems Engineer}\\[5pt]
+{\small
+\href{mailto:valter.nunez@outlook.com}{valter.nunez@outlook.com} \quad\textcolor{soft}{|}\quad
+\href{https://www.linkedin.com/in/valternunez}{linkedin.com/in/valternunez} \quad\textcolor{soft}{|}\quad
+\href{https://valternunez.github.io}{valternunez.github.io}
+}
+
+%==============================================================================
+%  SUMMARY
+%==============================================================================
+\section*{Summary}
+Backend engineer with five years on high-traffic e-commerce: event-driven, fault-tolerant
+systems. Decoupled \textit{83\%} of revenue-critical sales flows from the ERP and cut total shipping
+spend \textit{\textasciitilde78\%} with automated least-cost routing. Now studying \textbf{MSc Data
+Science at LSE} in London. Eligible for the UK Graduate visa (18 months, no sponsorship required).
+
+%==============================================================================
+%  EXPERIENCE
+%==============================================================================
+\section*{Experience}
+
+\role{Backend Engineer}{ZeBrands — high-traffic e-commerce}{Sep 2021 -- Mar 2026}{Remote, Mexico}
+\begin{tight}
+  \item Designed and built \textbf{OZ}, an event-driven platform that sustains online and retail sales through ERP outages, decoupling \textit{83\%} of revenue-critical sales flows from synchronous ERP calls; failure-mode analysis projected a \textit{91\%} reduction in sales-blocking downtime (FastAPI, PostgreSQL, RabbitMQ, Redis); now live across \textit{\textasciitilde195 stores} (Mexico, expanding to Brazil), sustaining \textit{\textasciitilde MX\$102M} in sales over the nine-day Hot Sale peak.
+  \item Built shipping middleware unifying multi-carrier APIs (FedEx, DHL) with automated least-cost routing, cutting total shipping spend \textit{\textasciitilde78\%} ($\approx$ \$500K USD/yr).
+  \item Migrated review analytics into a dedicated microservice, improving client-side data availability and query performance.
+  \item Maintained ERP modules and GraphQL APIs (Frappe, TypeScript) and stood up Grafana logging/observability that cut issue-detection and response times.
+  \item Mentored a junior backend developer; contributed to architecture reviews and backend coding standards across the client and promotions teams.
+\end{tight}
+\vspace{4pt}
+
+\role{Co-Founder \& Developer}{Laiter — software studio}{2017 -- 2019}{Mexico}
+\begin{tight}
+  \item Shipped client web applications end to end (Django, JavaScript) and built the early usage-analytics dashboards customers ran decisions on; owned deployments and production support.
+\end{tight}
+
+%==============================================================================
+%  SELECTED PROJECTS
+%==============================================================================
+\section*{Selected Projects}
+\begin{tight}
+  \item \project{Nexus}{sole architect of a multi-tenant SaaS for property administration: double-entry finance engine, Stripe Connect (charges, SPEI, payouts, disputes), per-tenant RBAC, and an LLM assist (Gemini) with usage metering, rate limits, and structured output. Built solo via an orchestrated multi-agent dev workflow (Claude Code, git worktrees). In active development (FastAPI, async SQLAlchemy, Next.js).}
+  \item \project{Ballon d'Or attention study}{Bayesian decomposition (PyMC, \textasciitilde210 player-seasons) isolating an unexplained media-attention residual after controlling for merit and team success; D3 scrollytelling site + Quarto report.}
+  \item \project{World Cup 2026 momentum}{natural-experiment data pipeline (local scrape $\rightarrow$ GitHub Actions $\rightarrow$ Pages) that regenerates daily.}
+\end{tight}
+
+%==============================================================================
+%  EDUCATION
+%==============================================================================
+\section*{Education}
+\role{MSc Data Science}{London School of Economics (LSE)}{2026 -- 2027}{In progress, London}
+\vspace{3pt}
+\role{B.S. Computer Science \& Technology}{Tecnológico de Monterrey (ITESM)}{2016 -- 2021}{Avg 90/100}
+\vspace{1pt}
+{\color{soft}\small Semester abroad at RMIT University, Melbourne (Avg 94/100). IBM Data Science Professional Certificate (in progress).}
+
+%==============================================================================
+%  SKILLS  (bold-label lines — ATS reads these as one linear stream)
+%==============================================================================
+\section*{Technical Skills}
+\skill{Languages}{Python, TypeScript, JavaScript, SQL \;(familiar: Go)}
+\skill{Backend}{FastAPI, Django, GraphQL, Celery, Frappe/ERPNext}
+\skill{Data \& Infra}{PostgreSQL, Redis, RabbitMQ, MongoDB, Docker, Grafana, GitHub Actions}
+\skill{Data Science}{pandas, NumPy, scikit-learn, PyMC, Bayesian inference, Quarto}
+\skill{AI / LLM}{LLM integration (Gemini), usage metering \& rate-limiting, structured output, agent-orchestrated development}
+\skill{Practices}{Event-driven \& microservice design, testing, observability, code review}
+\skill{Languages spoken}{Spanish (Native), English (C2), German (A2), Italian (A1)}
+
+\end{document}

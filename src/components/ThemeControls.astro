@@ -1,0 +1,96 @@
+---
+// Light/dark mode toggle. State lives as data-mode on <html>, persisted to
+// localStorage (key cv-mode). The no-FOUC initializer in Base.astro sets the
+// attribute before first paint; this component syncs the button + handles clicks.
+import type { Locale } from '../data/profile';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = 'en' } = Astro.props;
+const label = locale === 'es' ? 'Modo claro / oscuro' : 'Light / dark mode';
+---
+
+<button type="button" class="tc__mode" data-toggle-mode aria-pressed="false" aria-label={label} title={label}>
+  <svg class="tc__icon tc__icon--sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+  </svg>
+  <svg class="tc__icon tc__icon--moon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<style>
+  .tc__mode {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: var(--border-thin) solid var(--rule);
+    border-radius: 999px;
+    background: var(--bg-raised);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .tc__mode:hover {
+    color: var(--ink);
+  }
+  .tc__icon {
+    display: block;
+  }
+  /* Show sun in light mode, moon in dark mode. */
+  .tc__icon--moon {
+    display: none;
+  }
+  :global([data-mode='dark']) .tc__icon--sun {
+    display: none;
+  }
+  :global([data-mode='dark']) .tc__icon--moon {
+    display: block;
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+
+  function currentMode() {
+    return root.getAttribute('data-mode') === 'dark' ? 'dark' : 'light';
+  }
+
+  function syncUI() {
+    const btn = document.querySelector<HTMLButtonElement>('[data-toggle-mode]');
+    if (btn) btn.setAttribute('aria-pressed', String(currentMode() === 'dark'));
+  }
+
+  // Keep the browser-chrome colour in step with the canvas.
+  function syncThemeColor() {
+    const bg = getComputedStyle(root).getPropertyValue('--bg').trim();
+    let meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'theme-color';
+      document.head.appendChild(meta);
+    }
+    if (bg) meta.content = bg;
+  }
+
+  function setMode(m: string) {
+    root.setAttribute('data-mode', m);
+    try {
+      localStorage.setItem('cv-mode', m);
+    } catch {}
+    syncUI();
+    syncThemeColor();
+  }
+
+  document
+    .querySelector<HTMLButtonElement>('[data-toggle-mode]')
+    ?.addEventListener('click', () => setMode(currentMode() === 'dark' ? 'light' : 'dark'));
+
+  syncUI();
+  syncThemeColor();
+</script>
