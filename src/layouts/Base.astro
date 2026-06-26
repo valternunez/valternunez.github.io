@@ -29,14 +29,12 @@ const altEs = new URL('/es', Astro.site).href;
 <html lang={locale} data-mode="light">
   <head>
     <!-- Theme initializer — runs before paint to avoid a flash of the wrong theme.
-         Restores the saved light/dark choice; falls back to the OS colour scheme. -->
+         Defaults to light (the static data-mode); only overrides from a remembered choice. -->
     <script is:inline>
       (function () {
         try {
-          var el = document.documentElement;
           var m = localStorage.getItem('cv-mode');
-          if (!m) m = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          el.setAttribute('data-mode', m);
+          if (m) document.documentElement.setAttribute('data-mode', m);
         } catch (e) {}
       })();
     </script>
