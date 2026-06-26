@@ -3,7 +3,7 @@ lang: "es"
 title: OZ — la plataforma que vende cuando el ERP está caído
 org: ZeBrands
 role: Arquitectura e implementación
-period: "2023 – 2026"
+period: "2025 – 2026"
 blurb: >
   Una capa de resiliencia orientada a eventos que mantiene operando las ventas en línea y de retail durante
   caídas del ERP. Un único punto de falla, convertido en un respaldo que puedes observar.

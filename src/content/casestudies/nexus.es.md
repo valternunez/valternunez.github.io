@@ -51,8 +51,8 @@ git worktrees aislados y traspasándose el trabajo mediante contratos de API y d
 (human-in-the-loop); los agentes son el apalancamiento. Es el mismo instinto que el resto de mi trabajo: diseñar el
 sistema, instrumentarlo y dejar que las herramientas hagan la parte repetitiva.
 
-### El punto
+### Qué demuestra
 
-Esto es lo que hago cuando nadie está asignando los tickets: elegir un dominio difícil y real y construir todo
-(arquitectura, modelo de datos, pagos, observabilidad y la documentación) a un estándar que defendería
-en una revisión.
+Propiedad de extremo a extremo de un dominio difícil, en solitario: diseño de sistemas, un stack de
+pagos que mueve dinero real (libros de partida doble, Stripe Connect), seguridad multiinquilino, y las
+pruebas y la documentación que lo respaldan.

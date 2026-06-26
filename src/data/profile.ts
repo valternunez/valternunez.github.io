@@ -59,7 +59,8 @@ const localized = {
     status: { label: 'MSc Data Science · LSE, London', short: 'LSE Data Science · London' },
     availability:
       'In London for the LSE MSc. Eligible for the UK Graduate visa (18 months, no sponsorship ' +
-      'required), and open to roles across the UK/EU and remote.',
+      'required); seeking Skilled Worker sponsorship to stay long-term. ' +
+      'Open to roles across the UK/EU and remote.',
     availabilityShort: 'Open to roles · UK/EU + remote',
     metrics: {
       erp: { label: 'ERP dependency', detail: 'Share of revenue-critical sales flows decoupled from synchronous ERP calls.' },
@@ -96,7 +97,8 @@ const localized = {
     status: { label: 'Maestría en Ciencia de Datos · LSE, Londres', short: 'Ciencia de Datos LSE · Londres' },
     availability:
       'En Londres por la maestría en LSE. Elegible para la Graduate visa del Reino Unido ' +
-      '(18 meses, sin necesidad de patrocinio) y abierto a roles en Reino Unido/UE y remotos.',
+      '(18 meses, sin necesidad de patrocinio); en busca de patrocinio Skilled Worker para ' +
+      'permanecer a largo plazo. Abierto a roles en Reino Unido/UE y remotos.',
     availabilityShort: 'Disponible · Reino Unido/UE + remoto',
     metrics: {
       erp: { label: 'Dependencia del ERP', detail: 'Proporción de flujos de venta críticos desacoplados de llamadas síncronas al ERP.' },
