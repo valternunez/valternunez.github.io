@@ -2,8 +2,8 @@
 title: Motu — a personal life operating system
 blurb: >
   A single-user "life OS" that pulls tasks, habits, finances, studies, and interlinked notes behind
-  one Daily Focus dashboard: knowledge graph, installments-aware finances, and a ⌘K command
-  palette included.
+  one Daily Focus dashboard: a wiki-linked knowledge graph, installments-aware finances, and study
+  tracking, all in one place.
 year: "2026"
 kind: full-stack
 stack: [FastAPI, "SQLAlchemy 2", PostgreSQL, "Next.js 16", "React 19", TypeScript]

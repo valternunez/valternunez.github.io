@@ -2,9 +2,9 @@
 lang: "es"
 title: ¿Las pausas de hidratación cambian el momentum del Mundial?
 blurb: >
-  Trata las pausas de hidratación obligatorias del Mundial 2026 como un experimento natural, midiendo si
-  mueven el momentum dentro del partido frente a interrupciones comparables. Un pipeline en vivo que se regenera a diario
-  conforme se acumulan los partidos.
+  Trató las pausas de hidratación obligatorias del Mundial 2026 como un experimento natural, midiendo si
+  movían el momentum dentro del partido frente a interrupciones comparables. Un pipeline que se regeneró a diario
+  durante el torneo conforme se acumulaban los partidos.
 year: "2026"
 kind: data-science
 stack: [Python, pandas, "GitHub Actions", "GitHub Pages"]

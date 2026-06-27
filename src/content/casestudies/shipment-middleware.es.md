@@ -2,7 +2,7 @@
 lang: "es"
 title: Middleware de envíos — una sola interfaz, todas las paqueterías
 org: ZeBrands
-role: Diseño y desarrollo
+role: Co-diseño y desarrollo
 period: "2024"
 blurb: >
   Un servicio que pone a cada paquetería detrás de una sola interfaz y enruta cada envío a
@@ -23,7 +23,7 @@ duplicadas y los envíos no se enrutaban de forma consistente a la opción más 
 
 ### El enfoque
 
-Construí un middleware que **normaliza las paqueterías detrás de un solo contrato** y vuelve el costo una
+Co-diseñé y construí el middleware de envíos: **cada paquetería detrás de un solo contrato**, con el costo como una
 decisión de primer nivel.
 
 - Una sola interfaz sobre todos los datos y operaciones de las paqueterías, de modo que nada más en la plataforma

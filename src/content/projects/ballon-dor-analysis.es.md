@@ -4,7 +4,7 @@ title: ¿El Balón de Oro premia los goles, o las historias?
 blurb: >
   Una descomposición bayesiana que se pregunta si la atención mediática tiene alguna asociación independiente con
   el premio más grande del futbol una vez controlados el mérito en la cancha y el éxito del equipo. El tirón, resulta,
-  vive en quién es *considerado*, no en quién gana.
+  vive en quién es <em>considerado</em>, no en quién gana.
 year: "2025"
 kind: data-science
 stack: [Python, PyMC, nutpie, D3.js, Quarto]

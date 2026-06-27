@@ -1,7 +1,7 @@
 ---
 title: OZ — selling while the ERP is down
 org: ZeBrands
-role: Architecture & implementation
+role: Co-architecture & implementation
 period: "2025 – 2026"
 blurb: >
   An event-driven resilience layer that keeps online and retail sales running during ERP
@@ -24,7 +24,7 @@ inventory or dropping orders.
 
 ### The approach
 
-I designed **OZ (Off-ZeCore)**: an event-driven platform that mirrors the data sales actually need
+I co-designed **OZ (Off-ZeCore)** with the team: an event-driven platform that mirrors the data sales actually need
 and absorbs writes while the ERP is unavailable.
 
 - **Clear contracts.** APIs, schemas, and event queues defined so each service can fail on its own.

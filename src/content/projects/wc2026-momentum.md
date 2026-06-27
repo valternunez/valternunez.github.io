@@ -1,9 +1,9 @@
 ---
 title: Do hydration breaks shift World Cup momentum?
 blurb: >
-  Treats the 2026 World Cup's mandatory hydration breaks as a natural experiment, measuring whether
-  they move in-match momentum against comparable stoppages. A live pipeline that regenerates daily
-  as matches accumulate.
+  Treated the 2026 World Cup's mandatory hydration breaks as a natural experiment, measuring whether
+  they moved in-match momentum against comparable stoppages. A pipeline that regenerated daily
+  through the tournament as matches accumulated.
 year: "2026"
 kind: data-science
 stack: [Python, pandas, "GitHub Actions", "GitHub Pages"]
