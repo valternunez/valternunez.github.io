@@ -3,7 +3,7 @@ title: Does the Ballon d'Or reward goals, or stories?
 blurb: >
   A Bayesian decomposition asking whether media attention has any independent association with
   football's biggest award after controlling for on-pitch merit and team success. The pull, it
-  turns out, lives in who gets *considered*, not who wins.
+  turns out, lives in who gets <em>considered</em>, not who wins.
 year: "2025"
 kind: data-science
 stack: [Python, PyMC, nutpie, D3.js, Quarto]

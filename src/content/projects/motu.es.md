@@ -3,7 +3,7 @@ lang: "es"
 title: Motu — un sistema operativo personal para la vida
 blurb: >
   Un "life OS" de un solo usuario que unifica tareas, hábitos, finanzas, estudios y notas interconectadas detrás de un
-  tablero de Enfoque Diario: con un grafo de conocimiento, finanzas conscientes de las mensualidades y una paleta de comandos ⌘K.
+  tablero de Enfoque Diario: un grafo de conocimiento enlazado tipo wiki, finanzas conscientes de las mensualidades y seguimiento de estudios, todo en un solo lugar.
 year: "2026"
 kind: full-stack
 stack: [FastAPI, "SQLAlchemy 2", PostgreSQL, "Next.js 16", "React 19", TypeScript]

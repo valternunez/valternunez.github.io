@@ -2,7 +2,7 @@
 lang: "es"
 title: OZ — la plataforma que vende cuando el ERP está caído
 org: ZeBrands
-role: Arquitectura e implementación
+role: Co-arquitectura e implementación
 period: "2025 – 2026"
 blurb: >
   Una capa de resiliencia orientada a eventos que mantiene operando las ventas en línea y de retail durante
@@ -25,7 +25,7 @@ el mismo inventario ni perder pedidos.
 
 ### El enfoque
 
-Diseñé **OZ (Off-ZeCore)**: una plataforma orientada a eventos que replica los datos que las ventas realmente necesitan
+Co-diseñé **OZ (Off-ZeCore)** junto con el equipo: una plataforma orientada a eventos que replica los datos que las ventas realmente necesitan
 y absorbe las escrituras cuando el ERP no está disponible.
 
 - **Contratos claros.** Definí las APIs, los esquemas y las colas de eventos para que cada servicio pudiera fallar

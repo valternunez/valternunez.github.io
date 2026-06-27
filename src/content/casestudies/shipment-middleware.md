@@ -1,7 +1,7 @@
 ---
 title: Shipment middleware — one interface, every carrier
 org: ZeBrands
-role: Design & development
+role: Co-design & development
 period: "2024"
 blurb: >
   A service that puts every shipping carrier behind one interface and routes each shipment to
@@ -22,8 +22,8 @@ duplicated, and shipments weren't consistently routed to the cheapest option.
 
 ### The approach
 
-I built middleware that **normalizes carriers behind a single contract** and makes cost a
-first-class decision.
+I co-designed and built the carrier middleware: **every carrier behind one contract**, with cost a
+first-class routing decision.
 
 - One interface over all carrier data and operations, so nothing else in the platform ever talks to
   a raw carrier API.
