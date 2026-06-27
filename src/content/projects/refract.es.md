@@ -9,6 +9,7 @@ year: "2026"
 kind: engineering
 stack: [TypeScript, Playwright, MCP, "Node.js"]
 repo: https://github.com/valternunez/refract
+npm: https://www.npmjs.com/package/@getrefractjs/cli
 featured: true
 order: 0
 ---
