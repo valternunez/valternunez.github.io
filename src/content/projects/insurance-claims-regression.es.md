@@ -4,7 +4,7 @@ title: Predicción de reclamos de seguros — regresión desde cero
 blurb: >
   Implementé regresión lineal a mano (varianza, covarianza, los coeficientes) y luego con
   scikit-learn, comparando ambas sobre datos de seguros de autos suecos por RMSE.
-year: "2025"
+year: "2020"
 kind: data-science
 stack: [Python, NumPy, scikit-learn]
 isPrivate: false

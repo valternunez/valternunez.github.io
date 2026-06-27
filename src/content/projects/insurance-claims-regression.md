@@ -3,7 +3,7 @@ title: Insurance-claims prediction — regression from scratch
 blurb: >
   Linear regression implemented by hand (variance, covariance, the coefficients) and then with
   scikit-learn, comparing the two on Swedish auto-insurance data by RMSE.
-year: "2025"
+year: "2020"
 kind: data-science
 stack: [Python, NumPy, scikit-learn]
 isPrivate: false
