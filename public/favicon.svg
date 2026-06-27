@@ -1,14 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <style>
     .tile { fill: #0a0a0a; }
-    .mark { fill: #ffffff; }
+    .mark { fill: none; stroke: #ffffff; stroke-width: 2.8; stroke-linecap: round; stroke-linejoin: round; }
     .tick { fill: #2563eb; }
     @media (prefers-color-scheme: dark) {
       .tile { fill: #f2f2f2; }
-      .mark { fill: #0a0a0a; }
+      .mark { stroke: #0a0a0a; }
     }
   </style>
   <rect class="tile" width="32" height="32" rx="6"/>
-  <path class="mark" d="M7 8.5 L13.2 23.5 L18.8 23.5 L25 8.5 L21 8.5 L16 21 L11 8.5 Z"/>
-  <rect class="tick" x="19.5" y="8.5" width="5.5" height="3"/>
+  <path class="mark" d="M6 9 L10.5 23 L15 9"/>
+  <path class="mark" d="M18.5 23 L18.5 9 L25.5 23 L25.5 9"/>
+  <rect class="tick" x="22.7" y="5.2" width="4.3" height="2.4" rx="0.4"/>
 </svg>
