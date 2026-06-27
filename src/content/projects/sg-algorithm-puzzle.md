@@ -8,7 +8,7 @@ kind: academic
 stack: [Lua, "Garry's Mod"]
 repo: https://github.com/valternunez/SG-Algorithm-Puzzle
 featured: false
-order: 6
+order: 5
 ---
 
 The thesis behind the degree: turning dynamic-programming problems into something you solve by

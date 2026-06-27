@@ -9,7 +9,7 @@ kind: engineering
 stack: [Go, REST]
 repo: https://github.com/valternunez/event-registration-rest-api
 featured: false
-order: 5
+order: 4
 ---
 
 Un proyecto enfocado en trabajar con la concurrencia de Go y los idiomas HTTP de la biblioteca estándar en lugar de recurrir a

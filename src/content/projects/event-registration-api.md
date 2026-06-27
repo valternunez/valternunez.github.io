@@ -8,7 +8,7 @@ kind: engineering
 stack: [Go, REST]
 repo: https://github.com/valternunez/event-registration-rest-api
 featured: false
-order: 5
+order: 4
 ---
 
 A focused project to work in Go's concurrency and standard-library HTTP idioms instead of reaching
