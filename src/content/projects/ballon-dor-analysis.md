@@ -4,7 +4,7 @@ blurb: >
   A Bayesian decomposition asking whether media attention has any independent association with
   football's biggest award after controlling for on-pitch merit and team success. The pull, it
   turns out, lives in who gets <em>considered</em>, not who wins.
-year: "2025"
+year: "2026"
 kind: data-science
 stack: [Python, PyMC, nutpie, D3.js, Quarto]
 repo: https://github.com/valternunez/ballon-dor-analysis

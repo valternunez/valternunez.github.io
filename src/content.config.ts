@@ -50,6 +50,7 @@ const projects = defineCollection({
     stack: z.array(z.string()).default([]),
     repo: z.string().url().optional(),
     live: z.string().url().optional(),
+    npm: z.string().url().optional(),
     isPrivate: z.boolean().default(false),
     featured: z.boolean().default(false),
     order: z.number().default(0),

@@ -11,11 +11,12 @@ interface Props {
   stack: string[];
   repo?: string;
   live?: string;
+  npm?: string;
   isPrivate?: boolean;
   featured?: boolean;
   locale?: Locale;
 }
-const { title, blurb, year, kind, stack, repo, live, isPrivate, featured, locale = 'en' } = Astro.props;
+const { title, blurb, year, kind, stack, repo, live, npm, isPrivate, featured, locale = 'en' } = Astro.props;
 const t = useTranslations(locale);
 ---
 
@@ -43,6 +44,13 @@ const t = useTranslations(locale);
       live && (
         <a class="card__link card__link--accent" href={live} target="_blank" rel="noopener">
           {t.card.live}
+        </a>
+      )
+    }
+    {
+      npm && (
+        <a class={`card__link ${live ? '' : 'card__link--accent'}`} href={npm} target="_blank" rel="noopener">
+          {t.card.npm}
         </a>
       )
     }
