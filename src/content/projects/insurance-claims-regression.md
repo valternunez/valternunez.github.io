@@ -8,7 +8,7 @@ kind: data-science
 stack: [Python, NumPy, scikit-learn]
 isPrivate: false
 featured: false
-order: 4
+order: 6
 ---
 
 A build-it-before-you-import-it exercise: deriving the estimator from first principles to see

@@ -9,7 +9,7 @@ kind: academic
 stack: [Lua, "Garry's Mod"]
 repo: https://github.com/valternunez/SG-Algorithm-Puzzle
 featured: false
-order: 6
+order: 5
 ---
 
 La tesis detrás del título: convertir problemas de programación dinámica en algo que resuelves
