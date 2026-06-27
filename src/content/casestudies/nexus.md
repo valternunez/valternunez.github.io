@@ -19,10 +19,10 @@ order: 0
 
 ### What it is
 
-**Nexus** is a multi-tenant SaaS backend for condominium and real-estate administration, in active
-development and onboarding its first tenants. A hierarchical **adjacency-list node model** maps any
-physical layout (vertical towers through sprawling neighborhoods), and a per-condo RBAC + add-on
-system gates features per tenant.
+**Nexus** is a multi-tenant SaaS platform for condominium and real-estate administration — a FastAPI
+backend with a Next.js admin dashboard and a resident PWA — in active development and onboarding its
+first tenants. A hierarchical **adjacency-list node model** maps any physical layout (vertical towers
+through sprawling neighborhoods), and a per-condo RBAC + add-on system gates features per tenant.
 
 ### Why it's interesting
 
