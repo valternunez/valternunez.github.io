@@ -20,8 +20,9 @@ order: 0
 
 ### Qué es
 
-**Nexus** es un backend SaaS multiinquilino para la administración de condominios y bienes raíces, en desarrollo
-activo e incorporando sus primeros inquilinos. Un **modelo jerárquico de nodos con listas de adyacencia** mapea cualquier
+**Nexus** es una plataforma SaaS multiinquilino para la administración de condominios y bienes raíces —un backend
+en FastAPI con un panel de administración en Next.js y una PWA para residentes—, en desarrollo activo e incorporando
+sus primeros inquilinos. Un **modelo jerárquico de nodos con listas de adyacencia** mapea cualquier
 distribución física (desde torres verticales hasta vecindarios extensos) y un sistema de RBAC + complementos por condominio
 habilita las funcionalidades por inquilino.
 
