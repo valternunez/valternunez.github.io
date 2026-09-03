@@ -101,3 +101,12 @@ claim survives an interview:
 - Fill in any absolute-scale anchors if you can defend them (orders/day, events/sec, store count).
 - Publish one sanitized backend repo to back the distributed-systems claims (currently all proprietary
   or private).
+
+## One page, enforced
+
+Every variant must fit on a single page. CI checks this after compiling and **fails the deploy**
+if any PDF is longer, so an overlong bullet can't ship silently. Locally, `npm run cv` builds all
+five into `public/cv/` (needs Tectonic or MiKTeX).
+
+The project bullets are the usual culprit: they sit at the bottom of a full page, so adding ~80
+characters to one is enough to push the trailing "Languages" line onto page 2.

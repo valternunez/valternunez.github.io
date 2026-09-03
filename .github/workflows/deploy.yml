@@ -46,6 +46,21 @@ jobs:
           done
           ls -l public/cv
 
+      - name: Check every CV still fits on one page
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq poppler-utils
+          fail=0
+          for p in public/cv/*.pdf; do
+            pages=$(pdfinfo "$p" | awk '/^Pages:/ {print $2}')
+            if [ "$pages" = "1" ]; then
+              echo "$(basename "$p"): 1 page"
+            else
+              echo "::error::$(basename "$p") is $pages pages - these CVs must fit on one page; trim the source in cv-src/"
+              fail=1
+            fi
+          done
+          exit $fail
+
       - name: Upload CV PDFs as an artifact
         uses: actions/upload-artifact@v4
         with:
