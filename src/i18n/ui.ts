@@ -28,7 +28,6 @@ const ui = {
     flagship: 'Headline',
     alsoWorth: 'Also around',
     contactLinks: { email: 'Email', linkedin: 'LinkedIn', github: 'GitHub', cv: 'CV (PDF)' },
-    footer: { built: 'Hand-built with Astro. No templates were harmed.' },
     langLabel: 'Language',
     card: {
       kinds: { 'data-science': 'Data science', engineering: 'Engineering', 'full-stack': 'Full-stack', academic: 'Academic' } as Record<string, string>,
@@ -56,7 +55,6 @@ const ui = {
     flagship: 'Lo principal',
     alsoWorth: 'También por aquí',
     contactLinks: { email: 'Correo', linkedin: 'LinkedIn', github: 'GitHub', cv: 'CV (PDF)' },
-    footer: { built: 'Hecho a mano con Astro. Ninguna plantilla salió lastimada.' },
     langLabel: 'Idioma',
     card: {
       kinds: { 'data-science': 'Ciencia de datos', engineering: 'Ingeniería', 'full-stack': 'Full-stack', academic: 'Académico' } as Record<string, string>,
