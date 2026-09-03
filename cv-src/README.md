@@ -1,19 +1,20 @@
 # CV source
 
-Three role-weighted 1-page variants, all Overleaf-ready (upload the `.tex`, compile with **XeLaTeX**):
+Five role-weighted 1-page variants sharing one preamble:
 
 | File | Use for | Leads with |
 |---|---|---|
 | `Valter-Nunez-CV.tex` | **Master** — backend / big-tech / general | ZeBrands impact (OZ, shipping) |
-| `Valter-Nunez-CV-DS.tex` | **Data Science / ML** roles | Quant foundation + the Bayesian/causal projects |
+| `Valter-Nunez-CV-DS.tex` | **Data Science / ML** roles | Quant foundation + the Bayesian projects |
 | `Valter-Nunez-CV-Founding.tex` | **Startup / founding-engineer** roles | Solo-built Nexus + Laiter co-founder ownership |
 | `Valter-Nunez-CV-AI.tex` | **AI / LLM-engineering** roles | In-product LLM integration (Gemini) + agent-orchestrated development |
+| `Valter-Nunez-CV-ES.tex` | **Spanish-language** applications | Same as the master, in Spanish |
 
 They share an identical preamble (fonts, colours, `\role`/`\skill` macros); only the subtitle,
-summary, and section order/emphasis differ. Edit the relevant one in Overleaf.
+summary, and section order/emphasis differ.
 
-`public/cv/Valter-Nunez-CV.pdf` is the master and is what the site downloads; the DS and founding
-PDFs also live in `public/cv/`.
+The PDFs the site serves (`public/cv/*.pdf`) are **generated from these sources by CI** — they are
+not committed. `Valter-Nunez-CV.pdf` is the master and is what the site's download button links to.
 
 ## Project roster per variant
 
@@ -30,20 +31,19 @@ not reinstate it. Current project bullets:
 
 ## Compile
 
-- **Overleaf:** upload `Valter-Nunez-CV.tex`, set the compiler to **XeLaTeX** (Menu → Compiler),
-  click *Recompile*.
-- **Locally with [Tectonic](https://tectonic-typesetting.github.io/):**
-  ```bash
-  tectonic -X compile Valter-Nunez-CV.tex
-  ```
+**You normally don't have to.** Editing a `.tex` and pushing to `main` is enough: the deploy
+workflow ([.github/workflows/deploy.yml](../.github/workflows/deploy.yml)) compiles every
+`cv-src/*.tex` with Tectonic into `public/cv/` before the site build, so the served PDFs always
+match these sources. Download the run's `cv-pdfs` artifact to see the result without opening
+the site.
 
-## Updating the site's downloadable CV
+To compile one locally anyway:
 
-The site serves `../public/cv/Valter-Nunez-CV.pdf`. After editing, recompile and copy the PDF over:
+- **Overleaf:** upload the `.tex`, set the compiler to **XeLaTeX** (Menu → Compiler), *Recompile*.
+- **[Tectonic](https://tectonic-typesetting.github.io/):** `tectonic -X compile Valter-Nunez-CV.tex`
+- **MiKTeX (Windows):** `winget install MiKTeX.MiKTeX`, then `xelatex Valter-Nunez-CV.tex`
 
-```bash
-cp Valter-Nunez-CV.pdf ../public/cv/Valter-Nunez-CV.pdf
-```
+Local output lands in `cv-src/` and is gitignored, as is anything you drop in `public/cv/`.
 
 ---
 

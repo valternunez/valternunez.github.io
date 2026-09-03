@@ -36,3 +36,6 @@ cv-src/*.out
 cv-src/*.fls
 cv-src/*.fdb_latexmk
 cv-src/*.synctex.gz
+
+# CV PDFs — generated from cv-src/*.tex by the deploy workflow, not committed
+public/cv/*.pdf

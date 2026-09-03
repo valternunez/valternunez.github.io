@@ -44,10 +44,12 @@ GitHub Actions** (one-time).
 - `src/content/experience/` — work history.
 - `src/content/casestudies/` — deep-dive work (OZ, Shipment Middleware, Nexus).
 - `src/content/projects/` — curated project cards.
-- `cv-src/` — the LaTeX source for the downloadable CV (see its README).
-- `public/cv/Valter-Nunez-CV.pdf` — the served CV.
+- `cv-src/` — the LaTeX source for the downloadable CVs (see its README).
+- `public/cv/*.pdf` — generated from `cv-src/` at deploy time; not in git.
 
 ## Editing the CV
 
-The CV lives in [`cv-src/`](cv-src/) as LaTeX (Overleaf-ready). After recompiling, copy the PDF to
-`public/cv/Valter-Nunez-CV.pdf`.
+The CVs live in [`cv-src/`](cv-src/) as LaTeX. Edit a `.tex`, commit, push — the deploy
+workflow compiles all five with Tectonic into `public/cv/` before building the site, so the
+PDFs can never drift from their sources. To grab a built PDF without visiting the site,
+download the `cv-pdfs` artifact from the workflow run.

@@ -22,6 +22,36 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Cache Tectonic bundle
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Tectonic
+          key: tectonic-bundle-${{ runner.os }}-0.17.0
+
+      - name: Install Tectonic
+        run: |
+          curl -fsSL "https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.17.0/tectonic-0.17.0-x86_64-unknown-linux-gnu.tar.gz" -o tectonic.tar.gz
+          tar -xzf tectonic.tar.gz
+          sudo install -m 755 tectonic /usr/local/bin/tectonic
+          rm -f tectonic.tar.gz tectonic
+          tectonic --version
+
+      - name: Compile CV PDFs
+        run: |
+          mkdir -p public/cv
+          for f in cv-src/*.tex; do
+            echo "::group::$f"
+            tectonic -X compile --outdir public/cv "$f"
+            echo "::endgroup::"
+          done
+          ls -l public/cv
+
+      - name: Upload CV PDFs as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cv-pdfs
+          path: public/cv/*.pdf
+
       - name: Install, build, and upload
         uses: withastro/action@v3
         # Defaults: package manager auto-detected, build → ./dist, Node 20.
