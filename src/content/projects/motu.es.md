@@ -8,7 +8,7 @@ year: "2026"
 kind: full-stack
 stack: [FastAPI, "SQLAlchemy 2", PostgreSQL, "Next.js 16", "React 19", TypeScript]
 isPrivate: true
-featured: false
+featured: true
 order: 3
 ---
 

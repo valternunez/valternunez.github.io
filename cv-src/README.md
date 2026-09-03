@@ -15,6 +15,19 @@ summary, and section order/emphasis differ. Edit the relevant one in Overleaf.
 `public/cv/Valter-Nunez-CV.pdf` is the master and is what the site downloads; the DS and founding
 PDFs also live in `public/cv/`.
 
+## Project roster per variant
+
+The Ballon d'Or attention study was **removed from all five variants** (and from the website) — do
+not reinstate it. Current project bullets:
+
+| Variant | Projects |
+|---|---|
+| Master | Nexus · Refract · World Cup 2026 momentum |
+| AI | Refract · Motu · World Cup 2026 momentum |
+| DS | World Cup 2026 momentum · Insurance-claims regression (two bullets — Refract and Motu aren't data-science work) |
+| Founding | Nexus (solo) · Refract · World Cup 2026 momentum |
+| ES | Nexus · Refract · Momentum del Mundial 2026 |
+
 ## Compile
 
 - **Overleaf:** upload `Valter-Nunez-CV.tex`, set the compiler to **XeLaTeX** (Menu → Compiler),
@@ -49,8 +62,8 @@ few seconds — the rewrite optimizes for that.
    implementation of …".
 4. **LSE surfaced prominently.** "Incoming MSc Data Science at LSE (2026)" is in the summary and at
    the top of Education — it signals trajectory and ambition.
-5. **Added a Selected Projects block.** Nexus + the two public data-science studies show shipped,
-   independent work and a clear DS pivot — the kind of signal that gets a recruiter to click GitHub.
+5. **Added a Selected Projects block.** Nexus plus shipped, independent side projects show real
+   ownership outside work — the kind of signal that gets a recruiter to click GitHub.
 6. **ATS-safe formatting.** Single column, standard section names (Summary / Experience / Education /
    Skills), selectable text, no multi-column tables that break parsers, no icon fonts.
 7. **One accent color, used sparingly** — matches the website, so CV + site read as one brand.
