@@ -110,3 +110,17 @@ five into `public/cv/` (needs Tectonic or MiKTeX).
 
 The project bullets are the usual culprit: they sit at the bottom of a full page, so adding ~80
 characters to one is enough to push the trailing "Languages" line onto page 2.
+
+## Private phone number
+
+The public CVs (built by CI, served on the site) carry no phone number. To get CVs with your
+phone for sending to recruiters, keep a `cv-src/private-contact.local` file (gitignored, never
+commit it) containing:
+
+```tex
+\newcommand{\cvphone}{+44 7XXX XXXXXX}
+\newcommand{\cvphonetel}{+447XXXXXXXXX}
+```
+
+When that file exists, `npm run cv` adds the phone to every header and writes the PDFs to
+`public/cv/` (also gitignored). Without it — as in CI — the phone is simply left out.

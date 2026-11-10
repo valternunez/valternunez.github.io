@@ -40,13 +40,20 @@
 \setlist[tight]{leftmargin=1.1em, itemsep=1.6pt, topsep=2pt, parsep=0pt,
   label=\textcolor{accent}{\small$\bullet$}}
 
+% Phone is private: it is read from cv-src/private-contact.local (gitignored) when that file
+% exists, so local builds include it and the public CI builds never do.
+\IfFileExists{private-contact.local}{\input{private-contact.local}}{}
+
 \begin{document}
 
 {\Huge\bfseries Valter Nunez}\\[3pt]
 {\color{soft}\large Software Engineer $\rightarrow$ Data Science \;\textbar\; MSc Data Science, LSE (London)}\\[5pt]
-{\small
-\href{mailto:valter.nunez@outlook.com}{valter.nunez@outlook.com} \quad\textcolor{soft}{|}\quad
-\href{https://www.linkedin.com/in/valternunez}{linkedin.com/in/valternunez} \quad\textcolor{soft}{|}\quad
+{\footnotesize
+London, UK\hspace{0.5em}\textcolor{soft}{|}\hspace{0.5em}%
+\ifdefined\cvphone\href{tel:\cvphonetel}{\cvphone}\hspace{0.5em}\textcolor{soft}{|}\hspace{0.5em}\fi%
+\href{mailto:valter.nunez@outlook.com}{valter.nunez@outlook.com}\hspace{0.5em}\textcolor{soft}{|}\hspace{0.5em}%
+\href{https://www.linkedin.com/in/valternunez}{linkedin.com/in/valternunez}\hspace{0.5em}\textcolor{soft}{|}\hspace{0.5em}%
+\href{https://github.com/valternunez}{github.com/valternunez}\hspace{0.5em}\textcolor{soft}{|}\hspace{0.5em}%
 \href{https://valternunez.github.io}{valternunez.github.io}
 }
 
