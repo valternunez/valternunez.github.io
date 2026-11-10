@@ -197,21 +197,6 @@
   100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--pos) 0%, transparent); }
 }
 
-/* ── Metric row ── */
-.ed-metrics {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: var(--sp-8) var(--sp-6);
-  margin-top: var(--sp-16);
-  padding-top: var(--sp-8);
-  border-top: var(--border-thin) solid var(--rule);
-}
-@media (min-width: 40rem) {
-  .ed-metrics {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 /* ── Case studies ── */
 .ed-cases {
   display: grid;

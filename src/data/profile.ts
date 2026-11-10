@@ -1,4 +1,4 @@
-// Single source of truth for identity, headline, metrics and links.
+// Single source of truth for identity, headline and links.
 // Language-neutral data lives in `data`; translatable prose lives in `localized`.
 // `getProfile(locale)` assembles the localized view the pages consume.
 
@@ -18,13 +18,6 @@ const data = {
     en: '/cv/Valter-Nunez-CV.pdf',
     es: '/cv/Valter-Nunez-CV-ES.pdf',
   } as Record<Locale, string>,
-
-  // Numbers are single-source so EN/ES can never drift. Labels/details are localized by id.
-  metrics: [
-    { id: 'erp', value: -83, unit: '%', format: 'signed-percent' },
-    { id: 'shipping', value: -78, unit: '%', format: 'signed-percent' },
-    { id: 'downtime', value: -91, unit: '%', format: 'signed-percent' },
-  ],
 
   // School names + periods are neutral; degree + note are localized by id.
   education: [
@@ -60,13 +53,8 @@ const localized = {
     availability:
       'In London for the LSE MSc. Eligible for the UK Graduate visa (18 months, no sponsorship ' +
       'required); seeking Skilled Worker sponsorship to stay long-term. ' +
-      'Open to roles across the UK/EU and remote.',
-    availabilityShort: 'Open to roles · UK/EU + remote',
-    metrics: {
-      erp: { label: 'ERP dependency', detail: 'Share of revenue-critical sales flows decoupled from synchronous ERP calls.' },
-      shipping: { label: 'Shipping spend', detail: 'Automated least-cost routing across carriers (≈ $500K USD/yr).' },
-      downtime: { label: 'Downtime (projected)', detail: 'Designed-for reduction in sales-blocking downtime during ERP outages.' },
-    },
+      'Open to roles in London and across the UK.',
+    availabilityShort: 'Open to roles · London & UK',
     skills: [
       { group: 'Backend & APIs', items: ['Python', 'FastAPI', 'Django', 'TypeScript', 'GraphQL', 'Frappe / ERPNext'] },
       { group: 'Data & messaging', items: ['PostgreSQL', 'Redis', 'RabbitMQ', 'MongoDB', 'Celery', 'SQL'] },
@@ -98,13 +86,8 @@ const localized = {
     availability:
       'En Londres por la maestría en LSE. Elegible para la Graduate visa del Reino Unido ' +
       '(18 meses, sin necesidad de patrocinio); en busca de patrocinio Skilled Worker para ' +
-      'permanecer a largo plazo. Abierto a roles en Reino Unido/UE y remotos.',
-    availabilityShort: 'Disponible · Reino Unido/UE + remoto',
-    metrics: {
-      erp: { label: 'Dependencia del ERP', detail: 'Proporción de flujos de venta críticos desacoplados de llamadas síncronas al ERP.' },
-      shipping: { label: 'Gasto de envíos', detail: 'Enrutamiento automático al menor costo entre paqueterías (≈ $500K USD/año).' },
-      downtime: { label: 'Caídas (proyectado)', detail: 'Reducción de diseño en el tiempo de caída que bloquea ventas durante fallas del ERP.' },
-    },
+      'permanecer a largo plazo. Abierto a roles en Londres y el resto del Reino Unido.',
+    availabilityShort: 'Disponible · Londres y Reino Unido',
     skills: [
       { group: 'Backend y APIs', items: ['Python', 'FastAPI', 'Django', 'TypeScript', 'GraphQL', 'Frappe / ERPNext'] },
       { group: 'Datos y mensajería', items: ['PostgreSQL', 'Redis', 'RabbitMQ', 'MongoDB', 'Celery', 'SQL'] },
@@ -122,15 +105,6 @@ const localized = {
   },
 } as const;
 
-export interface Metric {
-  id: string;
-  value: number;
-  unit: string;
-  format: string;
-  label: string;
-  detail: string;
-}
-
 export function getProfile(locale: Locale) {
   const L = localized[locale];
   return {
@@ -145,11 +119,6 @@ export function getProfile(locale: Locale) {
     status: L.status,
     availability: L.availability,
     availabilityShort: L.availabilityShort,
-    metrics: data.metrics.map((m) => ({
-      ...m,
-      label: L.metrics[m.id as keyof typeof L.metrics].label,
-      detail: L.metrics[m.id as keyof typeof L.metrics].detail,
-    })) as Metric[],
     skills: L.skills,
     education: data.education.map((e) => ({
       school: e.school,

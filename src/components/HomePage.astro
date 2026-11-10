@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import MetricCounter from './MetricCounter.astro';
 import ProjectCard from './ProjectCard.astro';
 import LangSwitcher from './LangSwitcher.astro';
 import ThemeControls from './ThemeControls.astro';
@@ -63,10 +62,6 @@ const secondary = allProjects.filter((p) => !p.data.featured);
         <p class="ed-hero__avail">
           <span class="ed-hero__avail-dot" aria-hidden="true"></span>{profile.availabilityShort}
         </p>
-
-        <div class="ed-metrics">
-          {profile.metrics.map((m) => <MetricCounter metric={m} size="lg" />)}
-        </div>
       </section>
 
       <!-- ── Selected work ── -->
