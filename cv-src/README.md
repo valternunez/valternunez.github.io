@@ -78,7 +78,7 @@ A multi-agent audit flagged credibility risks; these were fixed with the real fa
   sales-blocking downtime" (not "cut 91%").
 - **ERP −83% has a denominator.** "decoupled 83% of revenue-critical sales flows from synchronous ERP
   calls."
-- **No title inflation.** Kept "Backend Engineer" (mid-level) and "mentored a junior backend
+- **No title inflation.** Use the official title "Backend Developer" (mid-level) and "mentored a junior backend
   developer" — honest; the architecture work carries the seniority signal, not a fake title.
 - **Dropped "causal."** The Ballon d'Or work is observational → "Bayesian decomposition isolating an
   unexplained media-attention residual."
